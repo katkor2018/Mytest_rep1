@@ -42,7 +42,7 @@ class Ball:
         return (pos[0] - self.x) ** 2 + (pos[1] - self.y) ** 2 <= self.radius ** 2
 
 # Создание списка шариков
-balls = [Ball() for _ in range(30)]
+balls = [Ball() for _ in range(10)]
 score = 0
 
 # Главный цикл игры
