@@ -2,7 +2,7 @@ class User:
     def __init__(self, user_id, name):
         self.__user_id = user_id
         self.__name = name
-        self.__access_level = "user"  # уровень доступа для обычных сотрудников
+        self.__access_level = "пользователь"
 
     def get_user_id(self):
         return self.__user_id
@@ -20,7 +20,7 @@ class User:
 class Admin(User):
     def __init__(self, user_id, name):
         super().__init__(user_id, name)
-        self.__access_level = "admin"  # уровень доступа для администраторов
+        self.__access_level = "администратор"  # уровень доступа для администраторов
         self.__users = []  # список пользователей
 
     def add_user(self, user):
