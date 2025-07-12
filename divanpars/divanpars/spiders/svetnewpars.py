@@ -20,3 +20,4 @@ class SvetnewparsSpider(scrapy.Spider):
                 'price': price,
                 'url': url
             }
+
