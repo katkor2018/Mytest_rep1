@@ -1,18 +1,23 @@
 import requests
+from bs4 import BeautifulSoup
 
-# 1. URL для POST-запроса
-url = "https://jsonplaceholder.typicode.com/posts"
+def get_keywords(url):
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+    except Exception as e:
+        print(f"Ошибка при запросе к сайту: {e}")
+        return
 
-# 2. Словарь с данными для отправки
-data = {
-    'title': 'foo',
-    'body': 'bar',
-    'userId': 1
-}
+    soup = BeautifulSoup(response.text, 'html.parser')
+    keywords_tag = soup.find("meta", attrs={"name": "keywords"})
+    if keywords_tag and "content" in keywords_tag.attrs:
+        keywords = keywords_tag["content"].strip()
+        print(f"Ключевые слова сайта {url}:")
+        print(keywords)
+    else:
+        print(f"Ключевые слова на сайте {url} не найдены.")
 
-# 3. Отправка POST-запроса с этими данными
-response = requests.post(url, json=data)
-
-# 4. Вывод статус-кода и содержимого ответа
-print("Status code:", response.status_code)
-print("Ответ:", response.json())
+if __name__ == "__main__":
+    url = ("https://www.")  # Укажите здесь нужный сайт
+    get_keywords(url)
